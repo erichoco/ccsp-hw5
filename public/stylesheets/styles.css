@@ -1,0 +1,365 @@
+@charset utf-8;
+
+html, body {
+  background: #f4f4f4;
+  font-family: "蘋果儷中黑", "Apple LiGothic", "Apple LiGothic Medium", "Microsoft JhengHei", "微軟正黑體", sans-serif;
+}
+
+/* ------------------------------ */
+/* Centered, fixed with container */
+/* ------------------------------ */
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media screen and (min-width: 1140px) {
+  .container {
+    width: 1140px;
+  }
+}
+
+button, button:active {
+  outline: 0;
+}
+
+/* ------ */
+/* Header */
+/* ------ */
+
+.poll-header {
+  background: #886e9e;
+  text-align: center;
+  color: #fff;
+  height: 167px;
+  position: relative; /* containing block for the triangle */
+  margin-top: 70px; /* leave space for the image */
+}
+
+.poll-header:after {
+  /* triangle */
+  content: '';
+  position: absolute;
+  /*border-color: #886e9e;*/
+  border: 10px solid transparent;
+  border-top-color: #886e9e;
+  left: 50%;
+  margin-left: -10px;
+  bottom: -20px;
+}
+
+.poll-header h1 {
+  font-size: 45px;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+.poll-header img {
+  margin-top: -66px;
+}
+
+/* ----------------------- */
+/* Poll form & poll result */
+/* ----------------------- */
+
+.poll-form {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 945px) {
+  .poll-form {
+    width: 945px;
+  }
+}
+
+.form-instruction {
+  color: #9fa2a2;
+  margin: 3em 0;
+}
+
+.flash-message {
+  color: #fff;
+  border: 1px solid #e89c00;
+  background: #ffac02;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.poll-result {
+  list-style-type: none;
+}
+
+.poll-list:after,
+.poll-result:after {
+  /* Clearfix */
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.poll-list label,
+.poll-result li {
+  color: #d3d5d5;
+  float: left;
+  font-size: 55px;
+  line-height: 65px;
+  width: 14.28%; /* 100% / 7 */
+}
+
+.poll-list label > span,
+.poll-result li > span {
+  display: block;
+  width: 1em; /* Force line-break per word */
+  margin: 0 auto;
+}
+
+.poll-list img,
+.poll-result img {
+  opacity: 0.5;
+
+  /* Micro-adjustment to make images */
+  position: relative;
+  top: 6px;
+}
+
+/* Poll-list specific styles */
+
+.poll-list label {
+  cursor: pointer;
+  position: relative; /* Containing block for pseudo elements */
+}
+
+.poll-list label > span {
+  padding-top: 1em; /* Preserved room for pseudo elements */
+}
+
+/* Hide the radio button from the user, but :checked still works. */
+.poll-list input[type="radio"]{
+  display: none;
+}
+
+/* Styling checked item */
+.poll-list input:checked + label {
+  color: #acafaf;
+}
+
+.poll-list input:checked + label img {
+  opacity: 1;
+}
+
+/* The dragging bar */
+
+.poll-list label:before, .poll-list label:after {
+  content: '';
+  position: absolute;
+  height: 15px;
+  top: 0;
+  width: 50%;
+  background: #ffac02;
+}
+
+.poll-list label:before {
+  left: 0;
+}
+
+.poll-list label:after {
+  right: 0;
+}
+
+/* Cut off the left-most and right-most bar. */
+
+.poll-list label:first-of-type:before,
+.poll-list label:last-of-type:after {
+  display: none;
+}
+
+/* Rounding left-most and right-most bar. */
+
+.poll-list label:first-of-type:after {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.poll-list label:last-of-type:before {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Make the bar grey for options "coming after" the chosen option. */
+
+.poll-list input:checked ~ label:before,
+.poll-list input:checked ~ label:after {
+  background: #ddd;
+}
+
+/* Make the left part of the bar of the chosen option orange. */
+
+.poll-list input:checked + label:before {
+  background: #ffac02;
+}
+
+/* Adding dots in the bar */
+
+.poll-list span:before {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: rgba(0,0,0,0.2);
+  right: -2.5px;
+  top: 5px;
+  z-index: 1; /* Higher than :after of label */
+  border-radius: 5px;
+}
+
+.poll-list label:last-child span:before { display: none; }
+
+/* Adding the knob on the bar for the chose option */
+
+.poll-list input:checked + label span:after {
+  content: '';
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  background: #e89c00;
+  left: 50%;
+  margin-left: -13px; /* 26/2 */
+  top: -5.5px; /* (26 - 15)/2 */
+  z-index: 1;
+  border-radius: 20px;
+}
+
+/* Submit button styles */
+
+.form-submit {
+  color: #fff;
+  background: #ffac02;
+  width: 390px;
+  font-size: 20px;
+  padding: 15px 0;
+  letter-spacing: 1px;
+  border: 0;
+  border-radius: 5px;
+}
+
+.form-submit:hover {
+  background: #eda104;
+}
+
+.form-submit:active{
+  /* Sinks for 5px */
+  margin-top: 5px;
+  padding-bottom: 10px; /* padding-bottom - sinking pixels */
+  -webkit-box-shadow: 0 -5px #ccc;
+}
+
+/* Poll-result specific styles */
+
+/* Default <ul> styles */
+.poll-result {
+  margin: 0;
+  padding: 0;
+  padding-bottom: 90px;
+}
+
+.result-data{
+  position: relative;
+}
+
+.result-data > span, .result-data:after {
+  font-family: "Helvetica", "Arial", "sans-serif";
+  position: absolute;
+  line-height: 38px;
+  top: 50%;
+}
+
+.result-data > span {
+  left: 0;
+  margin-top: -24px;
+  width: 68%;
+  color: #b1afb0;
+  text-align: right;
+  font-size: 28px;
+}
+
+.result-data:after{
+  width: 32%;
+  margin-top: -18px;
+  right: -1px;  /* make little space between number */
+  content: "%";
+  font-size: 12px;
+  font-weight: lighter;
+  color: #afafaf;
+  text-align: left;
+}
+
+/* ------------------ */
+/* Action button area */
+/* ------------------ */
+
+.action-buttons {
+  background: #afaeaf;
+  overflow: auto; /* clearfix */
+}
+
+.action-buttons-left, .action-buttons-right {
+  padding: 50px 0 190px;
+  background-position: center 150px;
+  background-repeat: no-repeat;
+  width: 50%;
+  text-align: center;
+}
+
+.action-buttons-left {
+  float: left;
+  background-image: url(../images/left-worker.png);
+}
+.action-buttons-right {
+  float: right;
+  background-image: url(../images/right-worker.png);
+}
+
+.action-buttons button{
+  border: 2px solid #fff;
+  width: 360px;
+  padding: 15px 0;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  background: transparent;
+  border-radius: 5px;
+}
+
+.action-buttons button:hover {
+  background: #bbb;
+}
+
+/* --------------- */
+/* Darkgrey Footer */
+/* --------------- */
+
+.poll-footer {
+  background: #3a3939;
+  height: 100px;
+}
+
+.footer-copyright {
+  float: left;
+  color: #c7c7c7;
+  line-height: 25px; /* Height of the CC logo */
+  vertical-align: middle;
+  letter-spacing: 1px;
+  padding-top: 37.5px; /* 0.5 x (footer height - CC logo height) */
+}
+
+.footer-copyright img{
+  vertical-align: middle;
+  margin-right: 1em;
+}
+
+.footer-logo {
+  float: right;
+  padding-top: 35px;
+}

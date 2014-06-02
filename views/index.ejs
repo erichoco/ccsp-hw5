@@ -1,0 +1,60 @@
+<% include _header.ejs %>
+<form class="poll-form" method="post" action="/vote">
+
+  <% if (messages.length) { %>
+    <p class="form-instruction flash-message">
+      <%- messages.join('<br>') %>
+    </p>
+  <% } %>
+
+  <p class="form-instruction">
+    請在下面點選你的意見
+  </p>
+
+  <!-- A special "flattened" list structure for the CSS styling to work  -->
+  <div class="poll-list">
+
+    <input type="radio" id="poll-option-0" name="vote" value="0">
+    <label for="poll-option-0">
+      <span><img src="images/fuck.png" alt="幹！">不服</span>
+    </label>
+
+    <input type="radio" id="poll-option-1" name="vote" value="1">
+    <label for="poll-option-1">
+      <span>不胡啦</span>
+    </label>
+
+    <input type="radio" id="poll-option-2" name="vote" value="2">
+    <label for="poll-option-2">
+      <span>不太服</span>
+    </label>
+
+    <input type="radio" id="poll-option-3" name="vote" value="3" checked>
+    <label for="poll-option-3">
+      <span>沒感覺</span>
+    </label>
+
+    <input type="radio" id="poll-option-4" name="vote" value="4">
+    <label for="poll-option-4">
+      <span>有點服</span>
+    </label>
+
+    <input type="radio" id="poll-option-5" name="vote" value="5">
+    <label for="poll-option-5">
+      <span>蠻酥胡</span>
+    </label>
+
+    <input type="radio" id="poll-option-6" name="vote" value="6">
+    <label for="poll-option-6">
+      <span>超服<img src="images/der.png" alt="der <3"></span>
+    </label>
+
+  </div>
+
+  <p class="form-instruction">
+    <button type="submit" class="form-submit">
+      送出意見看統計
+    </button>
+  </p>
+</form>
+<% include _footer.ejs %>
