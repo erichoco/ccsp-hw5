@@ -70,7 +70,6 @@ app.get('/fbcb', passport.authenticate('facebook', {
 }));
 
 app.get('/result', function(req, res){
-
   var vote = req.session.vote, // The voted item (0~6)
       fbid = "" + Math.random();    // Facebook ID. (Fake)
       fbid = req.user && req.user.id; // TODO [FB]: Get user from req.user
@@ -96,17 +95,42 @@ app.get('/result', function(req, res){
   //
   var vote = new Vote({vote: vote, fbid: fbid});
   vote.save(function(err, newVote){
+
+    console.log("new vote: ", newVote);
+    console.log("err: ", err);
+
     if( err ){
       req.flash('info', "你已經投過票囉！");
       return res.redirect('/');
     }
-  //
-  //   ... ...
-  //
-       res.render('result', {
-         votes: [18.1, 12.5, 42.44445, 21.3, 1.3, 2.5, 1.85555] // Percentages
-       });
 
+  });
+
+  Vote.find(function(err, voteList){
+    if( err ){
+      console.error(err);
+    }
+
+    var voteLen = voteList.length;
+    var voteCount = [], votePer = [];
+    for (var i = 0; i < 7; i++) {
+      voteCount.push(0);
+    };
+    for (var i = 0; i < voteLen; i++) {
+      var thisVote = voteList[i].vote;
+      if (thisVote > 6) {
+        console.error('vote value invalid: ' + thisVote);
+      } else {
+        voteCount[thisVote]++;
+      }
+    };
+    for (var i = 0; i < 7; i++) {
+      votePer[i] = voteCount[i]/voteLen * 100;
+    };
+
+    res.render('result', {
+      votes: votePer // Percentages
+    });
   });
 
 });
