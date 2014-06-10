@@ -100,10 +100,6 @@ app.get('/result', function(req, res){
       req.flash('info', "你已經投過票囉！");
       return res.redirect('/');
     }
-
-  //   ... ...
-  //
-  //
   });
 
   Vote.find(function(err, voteList){
