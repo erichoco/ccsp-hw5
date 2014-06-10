@@ -1,0 +1,39 @@
+<% include _header.ejs %>
+<form class="poll-form">
+  <p class="form-instruction">
+    統計結果
+  </p>
+
+  <ul class="poll-result">
+    <li>
+      <div class="result-data" data-percent="<%= votes[0] %>"><span></span></div>
+      <span><img src="images/fuck.png" alt="幹！">不服</span>
+    </li>
+    <li>
+      <div class="result-data" data-percent="<%= votes[1] %>"><span></span></div>
+      <span>不胡啦</span>
+    </li>
+    <li>
+      <div class="result-data" data-percent="<%= votes[2] %>"><span></span></div>
+      <span>不太服</span>
+    </li>
+    <li>
+      <div class="result-data" data-percent="<%= votes[3] %>"><span></span></div>
+      <span>沒感覺</span>
+    </li>
+    <li>
+      <div class="result-data" data-percent="<%= votes[4] %>"><span></span></div>
+      <span>有點服</span>
+    </li>
+    <li>
+      <div class="result-data" data-percent="<%= votes[5] %>"><span></span></div>
+      <span>蠻酥胡</span>
+    </li>
+    <li>
+      <div class="result-data" data-percent="<%= votes[6] %>"><span></span></div>
+      <span>超服<img src="images/der.png" alt="der <3"></span>
+    </li>
+  </ul>
+
+</form>
+<% include _footer.ejs %>
