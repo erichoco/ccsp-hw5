@@ -105,7 +105,7 @@ app.get('/result', function(req, res){
 
   });
 
-  /*Vote.find(function(err, voteList){
+  Vote.find(function(err, voteList){
     if( err ){
       console.error(err);
     }
@@ -130,10 +130,10 @@ app.get('/result', function(req, res){
     res.render('result', {
       votes: votePer // Percentages
     });
-  });*/
+  });/*
     res.render('result', {
       votes: [10, 20, 30, 40, 50, 60, 70] // Percentages
-    });
+    });*/
 });
 
 http.createServer(app).listen(app.get('port'), function(){
