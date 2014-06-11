@@ -95,7 +95,6 @@ app.get('/result', function(req, res){
   //
   var vote = new Vote({vote: vote, fbid: fbid});
   vote.save(function(err, newVote){
-
     console.log("new vote: ", newVote);
     console.log("err: ", err);
 
@@ -132,7 +131,6 @@ app.get('/result', function(req, res){
       votes: votePer // Percentages
     });
   });
-
 });
 
 http.createServer(app).listen(app.get('port'), function(){
