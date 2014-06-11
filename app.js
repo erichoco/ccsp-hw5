@@ -102,35 +102,39 @@ app.get('/result', function(req, res){
       req.flash('info', "你已經投過票囉！");
       return res.redirect('/');
     }
+    else {
+      Vote.find(function(err, voteList){
+        if( err ){
+          console.error(err);
+        }
 
-  });
+        var voteLen = voteList.length;
+        var voteCount = [], votePer = [];
+        for (var i = 0; i < 7; i++) {
+          voteCount.push(0);
+        };
+        for (var i = 0; i < voteLen; i++) {
+          var thisVote = voteList[i].vote;
+          if (thisVote > 6) {
+            console.error('vote value invalid: ' + thisVote);
+          } else {
+            voteCount[thisVote]++;
+          }
+        };
+        for (var i = 0; i < 7; i++) {
+          votePer[i] = voteCount[i]/voteLen * 100;
+        };
 
-  Vote.find(function(err, voteList){
-    if( err ){
-      console.error(err);
+        res.render('result', {
+          votes: votePer // Percentages
+        });
+
+      });
+
     }
 
-    var voteLen = voteList.length;
-    var voteCount = [], votePer = [];
-    for (var i = 0; i < 7; i++) {
-      voteCount.push(0);
-    };
-    for (var i = 0; i < voteLen; i++) {
-      var thisVote = voteList[i].vote;
-      if (thisVote > 6) {
-        console.error('vote value invalid: ' + thisVote);
-      } else {
-        voteCount[thisVote]++;
-      }
-    };
-    for (var i = 0; i < 7; i++) {
-      votePer[i] = voteCount[i]/voteLen * 100;
-    };
-
-    res.render('result', {
-      votes: votePer // Percentages
-    });
-  });/*
+  });
+/*
     res.render('result', {
       votes: [10, 20, 30, 40, 50, 60, 70] // Percentages
     });*/
