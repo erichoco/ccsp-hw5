@@ -12,6 +12,7 @@ var passport = require('passport');
 
 require('./config/db'); // TODO [DB] : Connect to database
 require('./config/passport'); // TODO [FB] : Passport configuration
+require('./other/util');
 
 var app = express();
 var Vote = mongoose.model('Vote'); // TODO [DB] : Get Vote model
@@ -71,7 +72,7 @@ app.get('/fbcb', passport.authenticate('facebook', {
 
 app.get('/result', function(req, res){
   var vote = req.session.vote, // The voted item (0~6)
-      fbid = "" + Math.random();    // Facebook ID. (Fake)
+      //fbid = "" + Math.random();    // Facebook ID. (Fake)
       fbid = req.user && req.user.id; // TODO [FB]: Get user from req.user
 
   // Delete the stored session.
