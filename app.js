@@ -92,8 +92,9 @@ app.get('/result', function(req, res){
     If the user already exists in the database, redirect her/him to '/'
   */
 
-  //
-  var vote = new Vote({vote: vote, fbid: fbid});
+  var newDate = new Date();
+	var datetime = newDate.today() + " @ " + newDate.timeNow();
+  var vote = new Vote({vote: vote, fbid: fbid, time: datetime});
   vote.save(function(err, newVote){
     console.log("new vote: ", newVote);
     console.log("err: ", err);
